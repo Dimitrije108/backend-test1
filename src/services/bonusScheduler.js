@@ -1,4 +1,5 @@
 const cron = require('node-cron');
+const processDueBonuses = require("./processDueBonuses");
 
 // Cron scheduler will check for due bonuses every minute
 function startBonusScheduler() {
