@@ -23,6 +23,10 @@ model User {
   inviter         User?      @relation("UserInvites", fields: [inviterId], references: [id])
   // Users invited by this user
   invitees        User[]     @relation("UserInvites")
+  // Purchases made by this user
+  purchases       Purchase[]
+  // Bonuses received by this user for inviting others
+  bonusesReceived Bonus[]    @relation("UserBonuses")
 }
 
 model Product {
@@ -30,4 +34,32 @@ model Product {
   name      String
   price     Decimal    @db.Decimal(10, 2)
   createdAt DateTime   @default(now())
+  // List of purchases of this product
+  purchases Purchase[]
+}
+
+model Purchase {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  bonus     Bonus?
+  // Purchased by user
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  // Product that was purchased
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model Bonus {
+  id          Int      @id @default(autoincrement())
+  paid        Boolean  @default(false)
+  amount      Decimal  @db.Decimal(10, 2)
+  scheduledAt DateTime
+  createdAt   DateTime @default(now())
+  // User who invited the purchaser and who will receive this bonus
+  inviterId   Int
+  inviter     User     @relation("UserBonuses", fields: [inviterId], references: [id])
+  // Purchase that triggered this bonus
+  purchaseId  Int      @unique
+  purchase    Purchase @relation(fields: [purchaseId], references: [id])
 }
