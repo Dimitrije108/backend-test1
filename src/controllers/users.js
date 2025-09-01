@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 const asyncHandler = require("express-async-handler");
 
 // TODO:
-// - Add validation
+// - Add validation and sanitization
 // - Add other CRUD methods
 
 const getAllUsers = asyncHandler(
