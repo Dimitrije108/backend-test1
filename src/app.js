@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const routes = require("./api/v1/index");
+const routes = require("./routes/routes");
 const startBonusScheduler = require("./services/bonusScheduler");
 
 app.use(express.json());
@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/routes/users", routes.users);
 app.use("/routes/products", routes.products);
 app.use("/routes/purchases", routes.purchases);
-app.use("/routes/bonuses", routes.bonuses);
 
 // Start the bonus schedule checker
 startBonusScheduler();
