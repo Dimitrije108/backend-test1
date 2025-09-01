@@ -1,3 +1,5 @@
+const { PrismaClient } = require("../../generated/prisma");
+const prisma = new PrismaClient();
 // Just marks the bonuses as paid without adding amount to user balance
 async function processDueBonuses() {
 	// Check for bonuses that are unpaid and scheduled for now or earlier
