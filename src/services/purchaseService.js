@@ -1,6 +1,6 @@
 const { PrismaClient } = require("../../generated/prisma");
 const prisma = new PrismaClient();
-const { createBonus, calculateBonus } = require("./bonusService");
+const { createBonus } = require("./bonusService");
 
 async function createPurchase(userId, productId) {
   // Fetch user with inviter as well
@@ -35,7 +35,7 @@ async function createPurchase(userId, productId) {
   // Create bonus if user has an inviter
   if (user.inviter) {
     await createBonus(
-			calculateBonus(product.price),
+			product.price,
       user.inviter.id,
       purchase.id,
     );
