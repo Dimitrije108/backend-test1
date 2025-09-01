@@ -38,7 +38,7 @@
 
 Seed script will create users, product and a purchase that will trigger bonus after 1h.
 This can be tracked with: 
-	```bash
+	```
 	npx prisma studio
 	```
 
