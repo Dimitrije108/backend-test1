@@ -24,7 +24,7 @@ const createUser = asyncHandler(
 		const { name, invitedById } = req.body || {};
 		// Basic validation
 		if (!name) {
-			return res.status(400).json("Name is required");
+			return res.status(400).json({ error: "Name is required" });
 		};
 
 		if (invitedById) {
@@ -35,7 +35,7 @@ const createUser = asyncHandler(
 			});
 			// Check if inviter exists
 			if (!inviter) {
-				return res.status(400).json("Inviter user does not exist");
+				return res.status(400).json({ error: "Inviter user does not exist" });
 			};
 		};
 

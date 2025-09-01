@@ -18,11 +18,11 @@ const createProduct = asyncHandler(
 		const { name, price } = req.body || {};
 		// Basic validation
 		if (!name) {
-			return res.status(400).json("Product name is required");
+			return res.status(400).json({ error: "Product name is required"});
 		};
 
 		if (price === null || isNaN(Number(price))) {
-			return res.status(400).json("Valid price is required");
+			return res.status(400).json({ error: "Valid price is required" });
 		};
 
 		const product = await prisma.product.create({ 
