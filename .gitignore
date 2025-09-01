@@ -25,3 +25,5 @@ temp/
 
 # Database
 generated/prisma/
+
+/generated/prisma
