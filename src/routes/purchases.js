@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const controller = require("../../controllers/purchases");
+const controller = require("../controllers/purchases");
 
 // Create purchase
 router.post('/', controller.handleCreatePurchase);
